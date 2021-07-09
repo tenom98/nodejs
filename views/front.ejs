@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script>
+            function publish(){
+                location.href = "/board/publish"
+            }
+            function popup(message){
+                location.href='/board/search?No='+message
+            }
+            function logout(){
+                location.href = "/logout"
+            }
+        </script>
+        <%- include("./head.ejs")%>
+    </head>
+    <body>
+        <%- include("./nav.ejs")%>
+        <table class="table">
+            <tr class="table-success">
+                <th>번호</th>
+                <th>제목</th>
+                <th>날짜</th>
+                <th>시간</th>
+            </tr>
+            <%if(letter.length ==0){%>
+                <tr>
+                    <td colspan="7">해당 게시판은 게시글이 없습니다</td>
+                </tr>
+            <%}else{
+                 for(var i =0; i < letter.length; i++){%>
+                    <tr onclick="popup('<%=letter[i].No%>')">
+                        <th class="table-light"><%=letter[i].No%></th>
+                        <td><%=letter[i].title%></td>
+                        <td><%=letter[i].date%></td>
+                        <td><%=letter[i].time%></td>
+                        <td><%=letter[i].author%></td>
+                        <td><%=letter[i].post_id%></td>
+            </tr>
+            <%}}%>
+        </table>
+        <button onclick="publish()">글쓰기</button>
+        <button onclick="logout()">로그아웃</button>
+    </body>
+</html>

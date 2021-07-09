@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function back(){
+                location.href = "/board"
+            }
+        </script>
+        <%- include("./head.ejs")%>
+    </head>
+    <body>
+        <%- include("./nav.ejs")%>
+        <form action="/retouch_2" method="POST">
+        <table border="1">
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>내용</th>
+            </tr>
+            <tr>
+                <td><input type="text" value="<%=info[0].No%>" name=No></td>
+                <td><input type="text" value="<%=info[0].title%>" name=title></td>
+                <td><input type="text" value="<%=info[0].content%>" name=content></td>
+            </tr>
+        </table>
+        <input type="submit" value="수정">
+        </form>
+        <button onclick="back()">뒤로가기</button> 
+    </body>
+</html>
